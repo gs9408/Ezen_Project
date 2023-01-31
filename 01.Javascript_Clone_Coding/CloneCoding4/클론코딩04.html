@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="./assets/css/style.min.css">
+</head>
+<body>
+    <header id="header">
+        <div id="date_box">
+            <h1>Jane & John</h1>
+            <h2 id="marry_text">Are getting married</h2>
+            <h2>
+                <b>17.07.2017</b>
+            </h2>
+        </div>
+    </header>
+    <div id="nav">
+        <div id="nav_sub">
+            <a href="#header">Home</a>
+            <a href="#section1">Jane & John</a>
+            <a href="#section3">Wedding</a>
+            <a href="#rsvp_btn">RSVP</a>
+        </div>
+    </div>
+    <div id="section1">
+        <div id="section1_sub">
+            <h1>
+                <b>Jane & John</b>
+            </h1>
+            <img src="./img/photo2.jpeg" alt="">
+            <p id="photo_text">
+                <i>You all know us. And we all know you. We are getting married lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>
+            </p>
+            <br>
+            <p id="photo_btn">
+                <a href="">Wedding Details</a>
+            </p>
+        </div>
+    </div>
+    <div id="section2">
+        <div id="section2_sub">
+            <h1>You Are Invited</h1>
+            <br>
+            <h2>Of course..</h2>
+        </div>
+    </div>
+    <div id="section3">
+        <div id="section3_sub">
+            <h1>
+                <b>THE WEDDING</b>
+            </h1>
+            <img src="./img/photo4.jpeg" alt="">
+            <div id="marry_date">
+                <div id="time">
+                    <h2>When</h2>
+                    <p>Wedding Ceremony - 2:00pm</p>
+                    <p>Reception & Dinner - 5:00pm</p>
+                </div>
+                <div id="place">
+                    <h2>Where</h2>
+                    <p>Some place, an address</p>
+                    <p>Some where, some address</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="lower_wrap">
+        <h1>HOPE YOU CAN MAKE IT!</h1>
+        <p>Kindly Respond By January, 2017</p>
+        <p>
+            <button type="submit" id="rsvp_btn">RSVP</button>
+        </p>
+    </div>
+    <div id="container">
+        <div id="container_sub">
+            <div id="container_center">
+                <h1>CAN YOU COME?</h1>
+                <p>We really hope you can make it.</p>
+                <form id="form_place">
+                    <input type="text" placeholder="Name(s)">
+                </form>
+                <p>
+                    <i>Sincerely, John & Jane</i>
+                </p>
+                <div id="choose_btn">
+                    <div id="btn1">
+                        <button type="button">Going</button>
+                    </div>
+                    <div id="btn2">
+                        <button type="button">Can't come</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <p>
+            Powered by <a href="">w3.css</a>
+        </p>
+    </footer>
+    <div id="footer_div"></div>
+  
+    <script>
+        document.querySelector('#rsvp_btn').addEventListener('click', e => {
+            e.preventDefault();
+
+            document.querySelector('#container').style.display = 'block';
+        });
+        
+        document.querySelector('#btn1').addEventListener('click', e => {
+            document.querySelector('#container').style.display = 'none';
+        });
+        document.querySelector('#btn2').addEventListener('click', e => {
+            document.querySelector('#container').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

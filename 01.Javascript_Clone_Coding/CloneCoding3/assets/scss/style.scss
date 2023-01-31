@@ -1,0 +1,271 @@
+@import './colors.scss';
+
+#top {
+    font-family: 'Lora', serif;
+    margin: auto;
+    // border: 1px solid #000;
+    width: 100%;
+    height: 50px;
+    // padding: 20px 40px;
+    box-sizing: border-box;
+    z-index: 999999;
+    
+    #top_sub {
+        background-color: $white;
+        position: fixed;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        
+        & .fa-bars {
+            margin-left: 250px;
+            line-height: 60px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        & #food {
+            margin: auto;
+            // border: 1px solid #000;
+            font-size: 23px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        & #mail {
+            line-height: 60px;
+            font-size: 23px;
+            margin-right: 230px;
+            font-weight: normal;
+        }
+    }
+}
+#section {
+    font-family: 'Lora', serif;
+    max-width: 1200px;
+    margin: auto;
+    
+    #section_sub1,
+    #section_sub2 {
+        padding: 16px 8px;
+        // border: 1px solid #000;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+    #section_sub1 {
+        margin-top: 55px;
+    }
+    #section_sub1 .food_item1,
+    #section_sub2 .food_item2 {       
+        padding: 0 8px;
+        float: left;
+        width: 25%;
+        box-sizing: border-box;
+    }
+    #section_sub1 .food_item1 img,
+    #section_sub2 .food_item2 img {
+        width: 100%;
+    }
+    #section_sub1 .food_item1 h3,
+    #section_sub2 .food_item2 h3 {
+        font-size: 22px;
+        text-align: center;
+        font-weight: normal;
+        padding: 7px;
+        line-height: 1.6em;
+    }
+    #section_sub1 .food_item1 p,
+    #section_sub2 .food_item2 p {
+        margin-top: 10px;
+        line-height: 1.6em;
+        font-size: 14px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.793);
+    }
+    #section_sub3 {
+        width: auto;
+        // border: 1px solid #000;
+        overflow: hidden;
+        text-align: center;
+        padding: 32px 0;
+    }
+        & #page_btn {
+            display: inline-block;
+        }
+        & a {
+            text-decoration: none;
+            color: $black;
+            font-size: 15px;
+            padding: 12px 16px;
+            width: auto;
+            display: block;
+            float: left;
+            // box-sizing: border-box;
+        }
+        & a:hover {
+            background-color: #000;
+            color: $white;
+        }
+    
+    hr {
+        border-color: rgb(0, 0, 0, 0.047);
+        margin-bottom: 22px;
+        margin-top: 22px;
+    }
+
+    #intro_picture {
+        font-family: 'Lora', serif;
+        // border: 1px solid #000;
+        padding: 32px 8px;
+    }
+    #intro_picture h3 {
+        padding: 10px;
+        text-align: center;
+        font-size: 23px;
+        margin-bottom: 15px;
+    }
+    #intro_picture img{
+        display: block;
+        margin: auto;
+    }
+    #intro_wr {
+        // border: 1px solid #000;
+        margin-top: 45px;
+        text-align: center;
+
+        & h4 {
+            margin-bottom: 20px;
+        }
+        & h4 b {
+            font-size: 20px;
+            font-weight: 400;
+        }
+        & h6 {
+            font-style: italic;
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: rgba(0, 0, 0, 0.813);
+        }
+        & p {
+            line-height: 1.6em;
+            font-size: 14px;
+            padding: 0 30px;
+            margin-bottom: 30px;
+            // border: 1px solid #000;
+        }
+    }
+}
+hr {
+    border-color: rgb(0, 0, 0, 0.047);
+    max-width: 1200px;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+}
+#footer {
+    // border: 1px solid #000;
+    overflow: hidden;
+    padding: 32px 8px;
+    max-width: 1200px;
+    margin: auto;
+
+    #footer_explan,
+    #blog,
+    #tags {
+        font-family: 'Lora', serif;
+        width: 33.3333%;
+        float: left;
+        padding: 0 8px;
+        box-sizing: border-box;
+        text-align: left;
+        // border: 1px solid #000;
+    }
+    #footer_explan {}
+    & h3 {
+        font-size: 22px;
+        padding-left: 0;
+    }
+    & p {
+        margin-top: 20px;
+        line-height: 1.5em;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.835);
+    }
+    & p a {
+        color: rgba(0, 0, 0, 0.835);
+    }
+    #blog {}
+    & h3 {
+        margin-bottom: 20px;
+        padding: 0 5px;
+    }
+    & ul {}
+    & ul li {
+        padding: 8px 16px;
+        box-sizing: border-box;
+    }
+    & ul #blog_picture1,
+    & ul #blog_picture2 {
+        width: 100%;
+        overflow: hidden;
+        padding-top : 16px;
+    }
+    & ul #blog_picture1:hover,
+    & ul #blog_picture2:hover {
+        background-color: #ccc;
+    }
+    & ul #blog_picture1 {
+        border-bottom: 1px solid rgb(238, 238, 238);
+    }
+    & ul #blog_picture1 img,
+    & ul #blog_picture2 img {
+        margin-right: 20px;
+    }
+    & ul #blog_picture1 img {
+        float: left;
+        width: 50px;
+        margin-bottom: 8px;
+    }
+    & ul #blog_picture2 img {
+        float: left;
+        width: 50px;
+    }
+    & ul li span {
+        list-style: none;
+        font-size: 14px;
+    }
+    & ul li .blog_title {
+        display: block;
+        font-size: 16px;
+        // border: 1px solid #000;
+        // margin-bottom: 1px;
+    }
+
+    #tags {}
+    & h3 {
+        margin: 10px 0;
+        padding: 0 5px;
+    }
+    & p {
+        // border: 1px solid #000;
+        // overflow: hidden;
+        width: 380px;
+        margin: 20px 0;
+    }
+    & p span {
+        display: inline-block;
+        background-color: #666;
+        color: $white;
+        padding: 0 8px;
+        margin-right: 3px;
+        font-weight: 500;
+        width: auto;
+        height: auto;
+        font-size: 12px;
+        text-align: center;
+        margin-bottom: 16px;
+        box-sizing: inherit;
+    }
+    & p span:first-child {
+        background-color: $black;
+        font-size: 16px;
+    }
+
+}

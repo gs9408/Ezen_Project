@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        #top {
+            font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            height: 54.5px;
+            position: absolute;
+            /* border: 1px solid #000; */
+        }
+        #top-item {
+            position: fixed;
+            /* border: 1px solid #000; */
+            width: 100%;
+            padding: 8px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.201);
+            background-color: white;
+            z-index: 2;
+        }
+        #top-item a {
+            text-decoration: none;
+            color: #000;
+            padding: 8px 6px;
+        }
+        #top-item #logo {
+            letter-spacing: 4px;
+            float: left;
+            line-height: 24.5px;
+        }
+        #top-item #logo:hover {
+            background-color: rgba(0, 0, 0, 0.203);
+            width: 200px;
+            box-sizing: border-box;
+        }
+        #top-item #logo b {
+            margin-left: 20px;
+            font-weight: 900;
+        }
+        #top-item #info {
+            float: right;
+            line-height: 38.5px;
+        }
+        #top-item #info a {
+            margin-right: 25px;
+            letter-spacing: 4px;
+        }
+        #top-item #info a:hover {
+            background-color: rgba(0, 0, 0, 0.203);
+            width: 200px;
+        }
+        #top-item #info a:last-child {
+            margin-right: 55px;
+        }
+
+        #header {
+            font-family: 'Inter', sans-serif; 
+            max-width: 1500px;
+            margin: auto;
+            /* border: 1px solid #000; */
+        }
+        #header img {
+            width: 100%;
+            /* border: 1px solid #000; */
+            position: relative;
+        }
+        #center_logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #center_logo h1 {}
+        #center_logo h1 span {
+            font-size: 35px;
+            color: #fff;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+        #center_logo h1 span b {
+            background-color: rgba(0, 0, 0, 0.814);
+            padding: 6px 18px;
+            font-weight: 700;
+            letter-spacing: 6px;
+        }
+        
+        #Section {
+            font-family: 'Open Sans', sans-serif;
+            max-width: 1500px;
+            margin: auto;
+        }
+        #Section_title {
+            border-bottom: 1px solid #eee;
+            margin: 50px 0;
+            width: 100%;
+            padding: 20px 0 30px;
+        }
+        #Section_title h3 {
+            font-size: 25px;
+        }
+        #Section_projects1,
+        #Section_projects2 {
+            overflow: hidden;
+        }
+        .img_wrap {
+            margin-bottom: 15px;
+        }
+        .img_wrap,
+        .img_wrap2 {
+            max-width: 360px;
+            float: left;
+            margin-right: 18px;
+        }
+        .img_wrap:last-child,
+        .img_wrap2:last-child {
+            margin-right: 0;
+        }
+        
+        .img_wrap .img_disp,
+        .img_wrap2 .img_disp2 {
+            width: 100%;
+            position: relative;
+        }
+        .img_wrap .img_disp .img_name,
+        .img_wrap2 .img_disp2 .img_name2 {
+            width: 120px;
+            text-align: center;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .img_wrap .img_disp img,
+        .img_wrap2 .img_disp2 img {
+            width: 100%;
+        }
+        .img_wrap2 .img_disp2 img {
+            margin-bottom: 30px;
+        }
+        #Section_title2 {
+            /* margin-top: 65px; */
+            font-family: 'Open Sans', sans-serif;
+        }
+        #Section_title2 h3 {
+            font-size: 24px;
+            border-bottom: 1px solid #eee;
+            /* margin-bottom: 30px; */
+            padding: 25px 0;
+            margin: 20px 0;
+            
+        }
+        #Section_title2 p {
+            line-height: 1.4em;
+            margin: 15px 0;
+        }
+        #character_card {
+            margin-top: 50px;
+            /* border: 1px solid #000; */
+            width: 100%;
+            overflow: hidden;
+        }
+        .character_card_sub {
+            float: left;
+            width: 360px;
+            margin-right: 20px;
+            margin-bottom: 30px;
+        }
+        .character_card_sub:last-child {
+            margin-right: 0;
+        }
+        .character_card_sub img {
+            width: 100%;
+            filter: grayscale(75%);
+        }
+        .character_card_sub .name {
+            font-family: 'Inter', sans-serif; 
+            font-size: 25px;
+            margin-top: 12px;
+        }
+        .character_card_sub .job {
+            margin: 20px 0;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.639);
+        }
+        .character_card_sub .introduce {
+            line-height: 1.4em;
+            margin-bottom: 13px;
+        }
+        .character_card_sub p .btn {
+            width: 100%;
+            padding: 11px;
+            border: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        #contact {
+            margin-top: 37px;
+            font-family: 'Inter', sans-serif; 
+        }
+        #contact h3 {
+            font-size: 23px;
+            border-bottom: 1px solid #eee;
+            padding: 23px 0;
+        }
+        #contact p {
+            padding: 23px 0;
+        }
+        #myform {}
+        #myform input {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            /* border-color: #eee; */
+        }
+        #myform #btn {
+            border: 0;
+            width: 150px;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #000;
+            color: #fff;
+            font-size: 15px;
+        }
+        #myform #btn:hover {
+            background-color: #ccc;
+            color: #000;
+            cursor: pointer;
+        }
+
+        #map {
+            margin-top: 25px;
+        }
+        #map img {}
+        #footer {
+            border: 1px solid #000;
+            margin-top: 5px;
+            background-color: #000;
+        }
+        #footer p {
+            padding: 35px;
+            color: #fff;
+            text-align: center;
+            font-size: 17px;
+        }
+        #footer p a {
+            color: #fff;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="top">
+        <div id="top-item">
+            <a href="#" id="logo">
+                <b>BR</b> Architects
+            </a>
+            <div id="info">
+                <a href="#">Projects</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+    <header id="header">
+        <img src="./img/architect.jpeg" alt="architect">
+        <div id="center_logo">
+            <h1>
+                <span>
+                    <b>BR</b> Architects
+                </span>
+            </h1>
+        </div>
+    </header>
+    <div id="Section">
+        <div id="Section_title">
+            <h3>Projects</h3>
+        </div>
+        <div id="Section_projects1">
+            <div class="img_wrap">
+                <div class="img_disp">
+                    <div class="img_name">Summer House</div>
+                    <img src="./img/house5.jpeg" alt="">
+                </div>
+            </div>
+            <div class="img_wrap">
+                <div class="img_disp">
+                    <div class="img_name">Brick House</div>
+                    <img src="./img/house2.jpeg" alt="">
+                </div>
+            </div>
+            <div class="img_wrap">
+                <div class="img_disp">
+                    <div class="img_name">Renovated</div>
+                    <img src="./img/house3.jpeg" alt="">
+                </div>
+            </div>
+            <div class="img_wrap">
+                <div class="img_disp">
+                    <div class="img_name">Barn House</div>
+                    <img src="./img/house4.jpeg" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="Section_projects2">
+            <div class="img_wrap2">
+                <div class="img_disp2">
+                    <div class="img_name2">Brick House</div>
+                    <img src="./img/house2.jpeg" alt="">
+                </div>
+            </div>
+            <div class="img_wrap2">
+                <div class="img_disp2">
+                    <div class="img_name2">Summer House</div>
+                    <img src="./img/house5.jpeg" alt="">
+                </div>
+            </div>
+            <div class="img_wrap2">
+                <div class="img_disp2">
+                    <div class="img_name2">Barn House</div>
+                    <img src="./img/house4.jpeg" alt="">
+                </div>
+            </div>
+            <div class="img_wrap2">
+                <div class="img_disp2">
+                    <div class="img_name2">Renovated</div>
+                    <img src="./img/house3.jpeg" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="Section_title2">
+            <h3>About</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+        <div id="character_card">
+            <div class="character_card_sub">
+                <img src="./img/team2.jpeg" alt="">
+                <h3 class="name">John Doe</h3>
+                <p class="job">CEO & Founder</p>
+                <p class="introduce">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>
+                    <button type="button" class="btn">Contact</button>
+                </p>
+            </div>
+            <div class="character_card_sub">
+                <img src="./img/team1.jpeg" alt="">
+                <h3 class="name">Jane Doe</h3>
+                <p class="job">Architect</p>
+                <p class="introduce">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>
+                    <button type="button" class="btn">Contact</button>
+                </p>
+            </div>
+            <div class="character_card_sub">
+                <img src="./img/team3.jpeg" alt="">
+                <h3 class="name">Mike Ross</h3>
+                <p class="job">Architect</p>
+                <p class="introduce">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>
+                    <button type="button" class="btn">Contact</button>
+                </p>
+            </div>
+            <div class="character_card_sub">
+                <img src="./img/team4.jpeg" alt="">
+                <h3 class="name">Dan Star</h3>
+                <p class="job">Architect</p>
+                <p class="introduce">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>
+                    <button type="button" class="btn">Contact</button>
+                </p>
+            </div>
+        </div>
+        <div id="contact">
+            <h3>Contact</h3>
+            <p>Lets get in touch and talk about your next project.</p>
+            <form id="myform">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Subject">
+                <input type="text" placeholder="Comment">
+                <button type="button" id="btn">SEND MESSAGE</button>
+                <div id="map">
+                    <img src="./img/map.jpeg" alt="">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p>
+            Powered by <a href="#">w3.css</a>
+        </p>
+    </footer>
+    
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+@mixin size_3 {
+    width: 33.3px;
+    box-sizing: border-box;
+}
+
+@mixin size_2 {
+    width: 50px;
+    box-sizing: border-box;
+}
+
+@mixin text_title {
+    font-size: 19px;
+    font-weight: normal;
+}
+
+@mixin text_normal {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+@mixin hover($b_ground, $f) {
+    background-color: $b_ground;
+    color: $f;
+}
+
+@mixin color {
+    color: white;
+    background-color: black;
+}
+
+@mixin section_image {
+    display: block;
+    float: left;
+    width: 33.3333%;
+    box-sizing: border-box;
+}
+
+@mixin section_title_text {
+    display: block;
+    font-size: 15px;
+    padding: 15px;
+}
+
+@mixin section_p_text {
+    line-height: 1.6em;
+    padding: 0 15px 15px;
+    font-size: 15px;
+}
+
+@mixin graph_o {
+    background-color: #aaa;
+    width: 100%;
+    margin-left: 16px;
+}
+
+@mixin graph_i {
+    background-color: #666;
+    text-align: center;
+    color: $white;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100%;
+}
+
+
+

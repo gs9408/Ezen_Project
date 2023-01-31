@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Coding(1)</title>
+    <!-- 초기화를 위한 reset.css -->
+    <link rel="stylesheet" href="reset.css">
+    <!-- google web font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        #top {
+            height: 54.5px;
+            position: fixed;
+            z-index: 2;
+        }
+        
+        #top_sub {
+            position: fixed;
+            width: 100%;
+            background-color: #fff;
+            font-family: 'Lora', serif;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        #top_sub a {
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 54.5px;
+            letter-spacing: 4px;
+            padding: 10px 15px;
+            color: #000;
+        }
+        #top_sub > a {
+            float: left;
+            margin-left: 15px;
+            line-height: 25px;
+            font-weight: normal;
+        }
+        #top #sub {
+            float: right;
+            margin-right: 15px;
+        }
+
+        #header {
+            max-width: 1600px;
+            min-width: 500px;
+            margin: auto;
+            /* border: 1px solid #000; */
+            position: relative;
+            /* margin-bottom: 70px; */
+        }
+        #header img {
+            width: 100%;
+            display: block;
+        }
+        #header div h1 {
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 5px;
+            position: absolute;
+            font-size: 34px;
+            bottom: 35px;
+            left: 25px;
+            color: #555;
+        }
+
+        #container {
+            max-width: 1100px;
+            /* border: 1px solid #000; */
+            margin: auto;
+        }
+        #container_sub {
+            overflow: hidden;
+            /* position: absolute; */
+            width: 100%;
+            margin: 70px 0;
+        }
+        #container_sub #container_item {
+            max-width: 600px;
+        }
+        
+        #container_sub #container_item img {
+            width: 502px;
+            float: left;
+            /* display: none; */
+            margin-right: 60px;
+        }
+        
+        #container_sub #container_write1 {
+            margin-top: 20px;
+            width: 500px;
+            float: left;          
+        }
+
+        #container_sub div h1,
+        #container_sub div h5 {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #container_sub div h1 {
+            font-size: 35px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 35px;
+            /* margin-top: 70px; */
+        }
+        #container_sub div h5 {
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+        #container_sub div p {
+            /* display: block; */
+            font-family: 'Lora', serif;
+            margin: 20px 0;
+            line-height: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        #container_sub div #contents1 {
+            font-weight: 600;
+            line-height: 28px;
+            color: #333;
+            font-weight: 500;
+        }
+        #container_sub div #contents1 span {
+            width: 70px;
+            background-color: #ddd;
+            padding: 4px 7px;
+        }
+        #container_sub div #contents2 {
+            line-height: 28px;
+        }
+
+        hr {
+            margin: 20px 0;
+            background: #fff;
+            border-color: rgba(238, 238, 238, 0.225);
+        }
+        #container_sub2 {
+            width: 1100px;
+            /* border: 1px solid #000; */
+            margin: 70px 0;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        #container_item2 {
+            float: left;
+            margin-right: 100px;
+        }
+        #container_item2 h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 35px;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        #container_item2 h4 {
+            font-size: 20px;
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+        }
+        #container_item2 p {
+            font-family: 'Lora', serif;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        #container_item2 span {
+            background-color: #ddd;
+        }
+        #container_item2 div img {
+            width: 502px;
+            float: left;
+        }
+        
+        #contact {
+            padding: 10px;
+            margin-top: 90px;
+            box-sizing: border-box;
+        }
+        #contact h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 35px;
+            letter-spacing: 5px;
+            margin-bottom: 40px
+        }
+        #contact p {
+            font-family: 'Lora', serif;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        #contact p b {
+            font-size: 18px;
+            font-weight: 700;
+            color: #758e99;
+        }
+
+        #myform {
+            /* border: 1px solid #000; */
+        }
+        #myform p {
+            /* border: 1px solid #000; */
+            height: 40px;
+        }
+        #myform .field input {
+            /* border: 1px solid #000; */
+            font-family: 'Lora', serif;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 0;
+            border-bottom: 1px solid #ccc
+        }
+        #myform .field #btn {
+            width: 150px;
+            padding: 10px;
+            margin-top: 20px;
+            border-bottom: none;
+            font-size: 15px;
+            font-weight: 400;
+        }
+        
+        #footer {
+            /* border: 1px solid #000; */
+            margin-top: 80px;
+        }
+        #footer p {
+            font-family: 'Lora', serif;
+            padding: 50px;
+            text-align: center;
+            background-color: rgba(211, 211, 211, 0.284);
+            color: #333;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        #footer p a {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="top">
+        <div id="top_sub">
+            <a href="#">Gourmet au Catering</a>
+            <div id="sub">
+                <a href="#">About</a>
+                <a href="#">Menu</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+    <header id="header">
+        <img src="./img/hamburger.jpeg" alt="hamburger_img">
+        <div>
+            <h1>Le Catering</h1>
+        </div>
+    </header>
+    <div id="container">
+        <div id="container_sub">
+            <div id="container_item">
+                <img src="./img/tablesetting2.jpeg" alt="tablesetting2">
+            </div>
+            <div id="container_write1">
+                <h1>About Catering</h1>
+                <br>
+                <h5>Tradition Since 1889</h5>
+                <p id="contents1">
+                    The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.We only use <span>seasonal</span> ingredients.
+                </p>
+                <p id="contents2">
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div id="container_sub2">
+            <div id="container_item2">
+                <h1>Our Menu</h1>
+                <br>
+                <h4>Bread Basket</h4>
+                <p>Assortment of fresh baked fruit breads and muffins 5.50</p>
+                <br>
+                <h4>Honey Almond Granola with Fruits</h4>
+                <p>Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p>
+                <br>
+                <h4>Belgian Waffle</h4>
+                <p>Vanilla flavored batter with malted flour 7.50</p>
+                <br>
+                <h4>Scrambled eggs</h4>
+                <p>Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p>
+                <br>
+                <h4>Blueberry Pancakes</h4>
+                <p><span>With syrup, butter and lots of berries 8.50</span></p>
+            </div>
+            <div>
+                <img src="./img/tablesetting.jpeg" alt="">
+            </div>
+        </div>
+        <hr>
+        <div id="contact">
+            <h1>Contact</h1>
+            <br>
+            <p>
+                We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste. Do not hesitate to contact us.
+            </p>
+            <p>
+                <b>Catering Service, 42nd Living St, 43043 New York, NY</b>
+            </p>
+            <p>
+                You can also contact us by phone 00553123-2323 or email catering@catering.com, or you can send us a message here:
+            </p>
+            <form id="myform">
+                <p class="field">
+                    <input type="text" placeholder="Name">
+                </p>
+                <p class="field">
+                    <input type="text" placeholder="How many people">
+                </p>
+                <p class="field">
+                    <input type="datetime-local" id="date">
+                </p>
+                <p class="field">
+                    <input type="text" placeholder="Message \ Special requirements">
+                </p>
+                <p class="field">
+                    <input type="button" id="btn" value="SEND MESSAGE">
+                </p>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p>
+            Powered by <a href="#">w3.css</a>
+        </p>
+    </footer>
+    
+</body>
+</html>

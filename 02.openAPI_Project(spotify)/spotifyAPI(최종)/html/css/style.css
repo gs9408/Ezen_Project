@@ -1,0 +1,346 @@
+@charset "utf-8";
+
+/* 공통 */
+html {
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-family: "Audiowide", "Do Hyeon", sans-serif;
+  letter-spacing: 1px;
+}
+body {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: #000;
+  color: #fff;
+  box-sizing: border-box;
+  line-height: 1.5;
+  height: auto;
+}
+body p {
+  color: #ccc;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+/* 공통 */
+
+/* Top Navigation Bar */
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.logo a {
+  color: #1bd760;
+  font-size: 40px;
+  margin-left: 20px;
+}
+.logo a:hover {
+  color: #fff;
+}
+
+/* Search Input Bar */
+#search_wrapper {
+  display: flex;
+  padding-top: 2px;
+  box-sizing: border-box;
+}
+
+#search_wrapper button {
+  cursor: pointer;
+  display: block;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  background-color: #272727;
+  color: #ccc;
+  font-weight: 100;
+  font-size: 18px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-left: -45px;
+  border: none;
+}
+#search_wrapper button:hover {
+  color: #fff;
+}
+#search {
+  width: 380px;
+  height: 45px;
+  padding-top: 3px;
+  background-color: #272727;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 15px;
+  text-indent: 20px;
+}
+.user_wrapper {
+  padding: 10px 20px;
+}
+/* Top Navigation Bar */
+
+/* Side Bar */
+#openSidebar {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 30px;
+  font-size: 30px;
+  color: #272727;
+}
+#openSidebar:hover {
+  color: rgb(190, 186, 186);
+}
+
+#openSidebar .fa-solid {
+  display: block;
+  top: 0;
+}
+.side_bar {
+  width: 16%;
+  height: 1024px;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  color: #ccc;
+  border-radius: 5px;
+  display: none;
+}
+.side_bar ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.side_bar ul li:hover {
+  color: #fff;
+}
+.side_bar ul li:last-child {
+  border-bottom: 1px solid rgba(128, 127, 127, 0.2);
+  padding-bottom: 15px;
+}
+.side_bar ul li i {
+  margin-right: 20px;
+}
+.side_bar p {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.side_bar p:hover {
+  color: #fff;
+}
+/* Side Bar */
+
+/* Main  */
+.main {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 18px;
+  box-sizing: border-box;
+  background-color: #121212;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-top: 60px;
+}
+
+.cont_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.cont_wrapper h2 {
+  color: rgb(195, 195, 195);
+}
+
+.cont_wrapper p {
+  font-size: 12px;
+  color: rgb(195, 195, 195);
+  cursor: pointer;
+}
+.cont_wrapper p a {
+  color: rgb(195, 195, 195);
+}
+
+.cont_wrapper a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+/* Main  */
+
+/* playlist */
+.playlistWrapper .playList {
+  margin: auto;
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 7px 2px rgb(0, 0, 0);
+  /* box-sizing: border-box; */
+  margin-bottom: 20px;
+  border-radius: 7px;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
+
+/* .playlistWrapper .playList ul li {
+  height: 360px;
+} */
+/* .playlistWrapper .playList ul li:hover {
+  
+} */
+.playlistWrapper .playList ul li a {
+  float: left;
+}
+.playlistWrapper .playList ul li a img {
+  width: 300px;
+  border-radius: 7px;
+  margin: 30px;
+  box-sizing: border-box;
+}
+.playlistWrapper .playList ul li a img:hover {
+  transition-duration: 0.7s;
+  box-shadow: 0px 0px 28px rgba(0, 777, 0, 0.8), 0 -10px 20px -5px #fff;
+  width: 310px;
+}
+
+.playlistWrapper .playList ul li::after {
+  content: " ";
+  clear: both;
+  display: block;
+}
+.pList_title_wrapper {
+  padding-left: 20px;
+  box-sizing: border-box;
+  display: block;
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pList_title_wrapper ::after {
+  content: " ";
+  clear: both;
+  display: block;
+}
+
+.pList_title_wrapper .pList_name {
+  font-size: 50px;
+  display: block;
+  width: 100%;
+  float: left;
+  margin-top: 95px;
+}
+
+.pList_title_wrapper .pList_name .title {
+  display: block;
+  transition-property: all;
+  transition-duration: 0.08s;
+  transition-timing-function: ease-out;
+}
+
+.pList_dsc {
+  display: block;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 40px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+/* playlist */
+
+/* Search */
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -20px;
+}
+.list li {
+  width: 15%;
+  background-color: #121212;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: 10px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: auto;
+}
+.list li:last-child {
+  margin: none;
+}
+
+.list li img {
+  width: 90%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
+.list li img:hover {
+  width: 100%;
+  box-shadow: 0px 0px 10px 5px rgb(79, 79, 79);
+}
+
+.list li span a {
+  display: block;
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: -1px 1px 37px 14px rgba(0, 0, 0);
+}
+.list li span a:hover {
+  transition-duration: 0.15s;
+  color: #1bd760;
+  font-size: 17px;
+}
+/* Search */
+
+/* Scroll */
+body::-webkit-scrollbar {
+  width: 13px;
+}
+body::-webkit-scrollbar-thumb {
+  background: #272727;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(68, 67, 67);
+}
+body::-webkit-scrollbar-track {
+  background: #121212;
+}
+/* Scroll */

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NoticeMapper">
+    <!-- 전체 데이터를 역순으로 정렬 -->
+    <select id="selectList">
+        SELECT noticenum, noticecategory, noticetitle, noticedate FROM notice
+
+        <where>
+            <if test="noticecategory != null and noticecategory != ''">
+                noticecategory LIKE concat('%', #{noticecategory}, '%')
+            </if>
+
+            <if test="noticetitle != null and noticetitle != ''">
+                AND noticetitle LIKE concat('%', #{noticetitle}, '%')
+            </if>
+        </where>
+
+        ORDER BY noticenum DESC
+
+        <!-- 페이지 구현을 위한 LIMIT절 추가 -->
+        <if test="listCount > 0">
+            LIMIT ${offset}, ${listCount}
+        </if>
+    </select>
+
+    <!-- 전체 데이터의 숫자 조회 -->
+    <select id="selectCountAll">
+        SELECT COUNT(*) AS cnt FROM notice
+
+        <where>
+            <if test="noticecategory != null and noticecategory != ''">
+                noticecategory LIKE concat('%', #{noticecategory}, '%')
+            </if>
+
+            <if test="noticetitle != null and noticetitle != ''">
+                AND noticetitle LIKE concat('%', #{noticetitle}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 선택한 글 내용 조회 -->
+    <select id="selectItem">
+        SELECT noticenum, noticetitle, noticedate, noticeimg, noticecontent FROM notice WHERE noticenum=#{noticenum};
+    </select>
+</mapper>

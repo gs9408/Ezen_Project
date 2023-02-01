@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BasketMapper">
+
+    <!-- 상품 단일행 조회를 위한 기능 정의 -->
+    <select id="selectOpt">
+        select distinct o.optnum, o.optname, o.product_prodnum from productoption o inner join basket b on product_prodnum = b.prodnum;
+    </select>
+
+    <!-- 다중행 조회를 위한 기능 정의 -->
+    <select id="selectList">
+        SELECT basketno, prodname, thumbnail, optname, prodqty, prodprice, member_usernum, prodnum, productoption_optnum FROM basket ORDER BY basketno ASC
+
+        <!-- 페이지 구현을 위한 LIMIT절 추가 -->
+        <if test="listCount > 0">
+            LIMIT ${offset}, ${listCount}
+        </if>
+    </select>
+
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem">
+        SELECT basketno, prodname, thumbnail, optname, prodqty, prodprice, member_usernum, prodnum, productoption_optnum FROM basket WHERE basketno=#{basketno}
+    </select>
+
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem">
+        INSERT INTO basket ( prodname, thumbnail, optname, prodqty, prodprice, member_usernum, prodnum, productoption_optnum) VALUES ( #{prodname}, #{thumbnail}, #{optname}, #{prodqty}, #{prodprice}, #{member_usernum}, #{prodnum}, #{productoption_optnum})
+    </insert>
+
+    <!-- 수정을 위한 기능 정의 -->
+    <update id='updateItem'>
+        UPDATE basket SET prodqty=#{prodqty}, optname=#{optname}, productoption_optnum=#{optnum} WHERE basketno=#{basketno}
+    </update>
+
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteItem">
+        DELETE FROM basket WHERE basketno=#{basketno}
+    </delete>
+
+    <!-- 데이터 전체삭제를 위한 기능 정의 -->
+    <delete id="deleteAllItem">
+        DELETE FROM basket WHERE member_usernum=#{usernum}
+    </delete>
+
+    <!-- 데이터 수 조회하기  -->
+    <select id="selectCountAll">
+        SELECT COUNT(*) AS cnt FROM product
+
+        <where>
+            <if test="dname != null and dname != ''">
+                dname LIKE concat('%', #{dname}, '%')
+            </if>
+
+            <if test="loc != null and loc != ''">
+                OR loc LIKE concat('%', #{loc}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

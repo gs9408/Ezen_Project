@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PaymentMapper">
+
+    <!-- 전체상품 조회를 위한 기능 정의 -->
+    <select id="selectAllList">
+        SELECT basketno, prodname, thumbnail, optname, prodqty, prodprice, member_usernum, prodnum, productoption_optnum FROM basket WHERE member_usernum=#{usernum}
+    </select>
+
+    <!-- 선택상품 조회를 위한 기능정의 -->
+    <select id="selectSeList">
+        SELECT basketno, prodname, thumbnail, optname, prodqty, prodprice, member_usernum, prodnum, productoption_optnum FROM basket WHERE member_usernum=#{usernum} AND basketno IN (${selectItem})
+    </select>
+
+    <!-- 바로구매시 단일상품 조회 기능정의 -->
+    <select id="selectItem">
+        SELECT prodnum, prodname, thumbnail, prodprice FROM product WHERE prodnum = #{prodnum}
+    </select>
+
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem">
+        INSERT INTO  ( prodname, thumbnail, optname, prodqty, prodprice, member_usernum, prodnum, productoption_optnum) VALUES ( #{prodname}, #{thumbnail}, #{optname}, #{prodqty}, #{prodprice}, #{member_usernum}, #{prodnum}, #{productoption_optnum})
+    </insert>
+
+</mapper>

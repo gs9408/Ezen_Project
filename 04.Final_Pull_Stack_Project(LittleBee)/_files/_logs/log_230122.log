@@ -1,0 +1,65 @@
+23/01/22 20:03:16 756 [debug]: --------------------------------------------
+23/01/22 20:03:16 757 [debug]: |           Start Express Server           |
+23/01/22 20:03:16 757 [debug]: --------------------------------------------
+23/01/22 20:03:16 757 [debug]: server address => http://192.168.35.91:3001
+23/01/22 20:03:16 757 [debug]: --------------------------------------------
+23/01/22 20:03:19 539 [debug]: 클라이언트가 접속했습니다.
+23/01/22 20:03:19 540 [debug]: [GET] http://localhost:3001/login
+23/01/22 20:03:19 540 [debug]: [client] 127.0.0.1 / OS X / Chrome (109.0.0.0) / Apple Mac
+23/01/22 20:03:19 553 [debug]: 현재 로그인중이 아닙니다.
+23/01/22 20:03:19 558 [debug]: 클라이언트의 접속이 종료되었습니다. ::: [runtime] 18ms
+23/01/22 20:03:19 558 [debug]: -----------------------------------------------
+23/01/22 20:03:42 950 [debug]: 클라이언트가 접속했습니다.
+23/01/22 20:03:42 951 [debug]: [GET] http://localhost:3001/login/findid?username=김관수&useremail=ddd@dd.ddd
+23/01/22 20:03:42 951 [debug]: [client] 127.0.0.1 / OS X / Chrome (109.0.0.0) / Apple Mac
+23/01/22 20:03:42 981 [info]:  >> DATABASE에 접속됨 [threaId = 9]
+23/01/22 20:03:42 982 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:03:42 984 [debug]: SELECT userid, username FROM member WHERE username='김관수' AND useremail='ddd@dd.ddd'
+23/01/22 20:03:42 996 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:03:42 999 [debug]: 클라이언트의 접속이 종료되었습니다. ::: [runtime] 48ms
+23/01/22 20:03:42 999 [debug]: -----------------------------------------------
+23/01/22 20:28:15 056 [debug]: 클라이언트가 접속했습니다.
+23/01/22 20:28:15 057 [debug]: [GET] http://localhost:3001/products/10
+23/01/22 20:28:15 057 [debug]: [client] 127.0.0.1 / OS X / Chrome (109.0.0.0) / Apple Mac
+23/01/22 20:28:15 061 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:28:15 064 [debug]: SELECT COUNT(*) AS cnt FROM product
+23/01/22 20:28:15 073 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:28:15 074 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:28:15 076 [debug]: SELECT prodnum, prodname, prodprice, thumbnail, subcategory_subcategorynum FROM product WHERE maincategory_maincategorynum='10' ORDER BY prodnum ASC
+23/01/22 20:28:15 081 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:28:15 083 [debug]: 클라이언트의 접속이 종료되었습니다. ::: [runtime] 26ms
+23/01/22 20:28:15 083 [debug]: -----------------------------------------------
+23/01/22 20:28:15 084 [debug]: 클라이언트가 접속했습니다.
+23/01/22 20:28:15 085 [debug]: [GET] http://localhost:3001/products/10/sort?value=
+23/01/22 20:28:15 086 [debug]: [client] 127.0.0.1 / OS X / Chrome (109.0.0.0) / Apple Mac
+23/01/22 20:28:15 089 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:28:15 090 [debug]: SELECT COUNT(*) AS cnt FROM product
+23/01/22 20:28:15 090 [debug]: 클라이언트가 접속했습니다.
+23/01/22 20:28:15 090 [debug]: [GET] http://localhost:3001/products/10
+23/01/22 20:28:15 090 [debug]: [client] 127.0.0.1 / OS X / Chrome (109.0.0.0) / Apple Mac
+23/01/22 20:28:15 092 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:28:15 092 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:28:15 092 [debug]: SELECT prodnum, prodname, prodprice, thumbnail, subcategory_subcategorynum FROM product  WHERE  maincategory_maincategorynum=10  ORDER BY prodprice
+23/01/22 20:28:15 094 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:28:15 095 [debug]: 클라이언트의 접속이 종료되었습니다. ::: [runtime] 10ms
+23/01/22 20:28:15 095 [debug]: -----------------------------------------------
+23/01/22 20:28:15 096 [info]:  >> DATABASE에 접속됨 [threaId = 12]
+23/01/22 20:28:15 096 [info]:  >> DATABASE 임대됨 [threaId = 12]
+23/01/22 20:28:15 097 [debug]: SELECT COUNT(*) AS cnt FROM product
+23/01/22 20:28:15 098 [info]:  >> DATABASE 반납됨 [threaId = 12]
+23/01/22 20:28:15 098 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:28:15 098 [debug]: SELECT prodnum, prodname, prodprice, thumbnail, subcategory_subcategorynum FROM product WHERE maincategory_maincategorynum='10' ORDER BY prodnum ASC
+23/01/22 20:28:15 100 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:28:15 101 [debug]: 클라이언트의 접속이 종료되었습니다. ::: [runtime] 11ms
+23/01/22 20:28:15 101 [debug]: -----------------------------------------------
+23/01/22 20:28:15 157 [debug]: 클라이언트가 접속했습니다.
+23/01/22 20:28:15 157 [debug]: [GET] http://localhost:3001/products/10
+23/01/22 20:28:15 158 [debug]: [client] 127.0.0.1 / OS X / Chrome (109.0.0.0) / Apple Mac
+23/01/22 20:28:15 160 [info]:  >> DATABASE 임대됨 [threaId = 12]
+23/01/22 20:28:15 161 [debug]: SELECT COUNT(*) AS cnt FROM product
+23/01/22 20:28:15 161 [info]:  >> DATABASE 반납됨 [threaId = 12]
+23/01/22 20:28:15 161 [info]:  >> DATABASE 임대됨 [threaId = 9]
+23/01/22 20:28:15 162 [debug]: SELECT prodnum, prodname, prodprice, thumbnail, subcategory_subcategorynum FROM product WHERE maincategory_maincategorynum='10' ORDER BY prodnum ASC
+23/01/22 20:28:15 165 [info]:  >> DATABASE 반납됨 [threaId = 9]
+23/01/22 20:28:15 165 [debug]: 클라이언트의 접속이 종료되었습니다. ::: [runtime] 8ms
+23/01/22 20:28:15 165 [debug]: -----------------------------------------------

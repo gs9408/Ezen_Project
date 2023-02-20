@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useCallback } from 'react';
+import React, { memo, useState, useEffect, useCallback, useMemo, useReducer, useRef } from 'react';
 import ImageSlider from 'react-simple-image-slider';
 import { Link } from 'react-scroll';
 import { useNavigate } from 'react-router-dom';
@@ -34,12 +34,14 @@ const DetailProduct = memo(() => {
     // 데이터 갱신을 위한 상태값
     const [init, setInit] = useState(false);
 
+    const [select_item, setItem] = useState([]);
+
     // path파라미터 추출
     const { '*' : prodnum, category } = useParams();
     
     /** 리덕스 관련 코드 */ 
     const dispatch = useDispatch();
-    const { data, opt, error} = useSelector((state) => state.ProductSlice);
+    const { data, opt, loading, error} = useSelector((state) => state.ProductSlice);
 
     useEffect(() => {
         dispatch(getItem({id : prodnum})).then(()=>{
@@ -51,8 +53,6 @@ const DetailProduct = memo(() => {
         {url: data?.thumbnail, option:'option1'}
     ];
 
-    const [myNum, setMyNum] = useState(0);
-
     /** 드롭다운 선택 시 HTML 추가 */
     const Dropdown = useCallback((e) => {
         e.preventDefault();
@@ -62,114 +62,174 @@ const DetailProduct = memo(() => {
         const div = document.getElementById(choosenum);
         const A = div.classList.contains('active');
 
-        if (A === true) {
-            div.classList.remove('active');
+        if (A === false) {
+            div.classList.add('active');
         }
 
-        document.querySelectorAll('.X').forEach((v, i) => {
-            v.addEventListener('click', (e)=> {
-                const current = e.currentTarget.closest('li');
-                current.classList.add('active');
-                const A = current.querySelector('div').querySelector('input');
-                A.value = 0;
-            })
+        var arr = [];
+
+        document.querySelectorAll('.active').forEach((v, i) => {
+            const current = v.querySelector('#inputOPT').dataset;
+            const optnum = current.optnum;
+            const optname = current.optname;
+            const price = current.price;
+            arr.push({'optnum' : optnum, 'optname': optname, 'price': price});
         })
+
+        // state로 선택한 아이템 관리
+        setItem(arr.filter((item1, idx1) => {
+            return arr.findIndex((item2, idx2) => {
+                return item1.optnum === item2.optnum
+            }) === idx1;
+        }))
     }, []);
 
+
+    // X버튼 클릭 시 이벤트
+    const deleteIndex = useCallback((e) => {
+        const current = e.currentTarget.closest('li');
+        const input = current.querySelector('#inputOPT').dataset;
+        const optnum = input.optnum;
+
+        var A = select_item.findIndex((v, i) => {
+            return v.optnum == optnum;
+        })
+        // state 배열에서 삭제
+        select_item.splice(A, 1);
+
+        const price = parseInt(current.parentElement.querySelector('input').dataset.price);
+        const qty = parseInt(document.querySelector('.quantity').value);
+        const text = parseInt(document.querySelector('.totalPrice').innerText);
+
+        document.querySelector('.totalPrice').innerHTML= text - (price * qty);
+
+        // display:none
+        current.classList.remove('active');
+    }, [select_item]);
+
+    // 수량 증감 이벤트
     const onClickQty = useCallback((e) => {
         const current = e.currentTarget;
         const target = current.parentElement.querySelector('input');
         const set = current.dataset.set;
+        const price = target.closest('li').querySelector('#inputOPT').dataset.price;
+        let A = parseInt(target.value);
+
+        // +/-버튼 클릭 시 input.value 변경
         if (set === 'minus') {
-            let A = parseInt(target.value);
             if (A === 0) {
                 // 선택 수량이 0개면 alert으로 표시
-                window.alert("sdfsdf");
+                window.alert("0개 이하 선택은 불가합니다.");
                 return;
             }
             target.value = A-1;
-            console.log(target.value);
         } else {
-            let A = parseInt(target.value);
             target.value = A+1;
         }
+
+        // 각 선택 상품의 금액*수량 표시
+        const pTag = target.closest('li').querySelector('.btnW').children[2];
+        pTag.innerHTML = target.value * price + ' 원';
+
+        // 선택 상품의 총 금액*수량 표시
+        let totalPrice = 0;
+        document.querySelectorAll('.eachPrice').forEach((v, i) => {
+            totalPrice += parseInt(v.innerText);
+        })
+        
+        document.querySelector('.totalPrice').innerHTML= totalPrice;
     }, []);
 
-    // 장바구니 클릭 시 alert창 띄우기
-    const MySwal = withReactContent(Swal);
-    const navigate = useNavigate();
-    const onBasketConfirm = useCallback(async () => {
-        const current = document.querySelector('.selectOption');
-        const choose = current[current.selectedIndex].value;
-        console.log(choose);
-        const Optname = opt.filter(e => e.optnum == choose);
+    console.log(select_item);
 
-        // 선택 수량이 0이 아니고 옵션 선택을 했다면
-        if(myNum != 0 && choose != '') {
-            const result = await Swal.fire({
-                icon: 'question',
-                html: '<p style="color: #fff"><a href="#">상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?</a><b></b></p>',
-                showCloseButton: true,
-                showCancelButton: true,
-                focusConfirm: true,
-                confirmButtonText: '이동',
-                cancelButtonText: '취소'
-            });
-    
-            dispatch(postItem({
-                category: category,
-                prodnum: data.prodnum,
-                prodname: data.prodname,
-                thumbnail: data.thumbnail,
-                optname: Optname[0].optname,
-                prodqty: myNum,
-                prodprice: data.prodprice,
-                member_usernum: 10001,
-                optnum: choose
-            })).then(({payload, error}) => {
-                if (error) {
-                    window.alert(payload.data.rtmsg);
-                    return;
-                } else {
-                    console.log(payload.data);
-                }
-            })
-    
-            if (result.isConfirmed) {
-                navigate("/mymain/mybasket");
+    // // 금액변동 감지
+    // useEffect(() => {
+    //     document.querySelectorAll('.active').forEach((v) => {
+    //         const input = v.querySelector('.wrapOpt').querySelector('input').value;
+    //         console.log(input);
+    //     })
+    // }, [])
+
+    // 장바구니 클릭 이벤트
+    const navigate = useNavigate();
+    const onBasketConfirm = useCallback(() => {
+        document.querySelectorAll('.active').forEach((v) => {
+            const input = document.querySelector('#input');
+            const hidden = v.querySelector('input');
+            const qty = v.querySelector('.wrapOpt').querySelector('input').value;
+
+            if(qty != 0) {
+                dispatch(postItem({
+                    category: category,
+                    prodnum: input.dataset.prodnum,
+                    prodname: input.dataset.prodname,
+                    thumbnail: input.dataset.thumbnail,
+                    optname: hidden.dataset.optname,
+                    prodqty: qty,
+                    prodprice: input.dataset.prodprice,
+                    member_usernum: 10001,
+                    optnum: hidden.dataset.optnum
+                })).then(({payload, error}) => {
+                    if (error) {
+                        window.alert(payload.data.rtmsg);
+                        return;
+                    } else {
+                        console.log(payload.data);
+                    }
+                })
+            } else {
+                window.alert('옵션 및 구매수량을 선택해주세요.');
+                return;
             }
-        } else {
-            window.alert('옵션 및 구매수량을 선택해주세요.');
-            return;
+        })
+        if(window.confirm('장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?')) {
+            navigate('/mymain/mybasket');
         }
-    }, [MySwal]);
+    }, [category, navigate, dispatch]);
 
     /** 바로결제 버튼 클릭 이벤트 */
     const onNowPurchase = useCallback((e) => {
         e.preventDefault();
         const current = e.currentTarget;
 
-        const prodnum = current.input.dataset.prodnum;
-        const optnum = current.option.value;
-        const prodqty = myNum;
-        const selected = current.option.selectedIndex;
-        const optname = current.option[selected].innerText;
-        console.log(prodqty);
-        console.log(optnum);
+        /**
+         * 상품번호
+         * 옵션번호
+         * 옵션개수
+         * 옵션이름
+         * 상품금액
+         * 썸네일
+         */
 
-        if (myNum !== 0 && optnum !== '') {
-            setCookie('prodnum' ,prodnum);
-            setCookie('optnum', optnum);
-            setCookie('prodqty', prodqty);
-            setCookie('optname', optname);
+        const prodnum = current.input.dataset.prodnum;
+        const prodprice = current.input.dataset.prodprice;
+        const thumbnail = current.input.dataset.thumbnail;
+        const prodname = current.input.dataset.prodname;
+
+        let data = [];
+
+        document.querySelectorAll('.active').forEach((v, i) => {
+            const hidden = v.querySelector('input');
+            const prodqty = v.querySelector('.wrapOpt').querySelector('input').value;
+            const optnum = hidden.dataset.optnum;
+            const optname = hidden.dataset.optname;
+
+            const json = new Object();
+            json.prodnum = prodnum;
+            json.optname = optname;
+            json.prodqty = prodqty;
+            json.optnum = optnum;
+            json.prodprice = prodprice;
+            json.thumbnail = thumbnail;
+            json.prodname = prodname;
     
-            // userno값은 로그인 세션으로 받아와야 할듯?
-            navigate("/payment?select=item&user=10001");
-        } else {
-            window.alert('옵션 및 구매수량을 선택해주세요.');
-            return;
-        }
-    }, [navigate, myNum]);
+            data.push(json);
+        })
+
+        setCookie('prodnum' , JSON.stringify(data));
+        navigate("/payment?select=item&user=10001");
+
+    }, [navigate]);
 
     return (
         <DetailProductContainer>
@@ -195,7 +255,8 @@ const DetailProduct = memo(() => {
                             />
                         </div>
                         <form className='purchaseArea' onSubmit={onNowPurchase}>
-                            <input type='hidden' name='input' 
+                            <input type='hidden' name='input'
+                            id='input'
                             data-prodnum={data.prodnum}
                             data-prodname={data.prodname}
                             data-prodprice={data.prodprice}
@@ -222,39 +283,38 @@ const DetailProduct = memo(() => {
                                     })}
                                 </select>
                             </div>
-                            <div className='numBtn'>
-                                {/* <div>
-                                    <button type='button' className='mBtn' onClick={e => setMyNum(myNum-1)}>-</button>
-                                    <input className='quantity' name='qty' value={myNum} readOnly />
-                                    <button type='button' className='pBtn' onClick={e => setMyNum(myNum+1)}>+</button>
-                                </div> */}
-                            </div>
                             <hr />
                             <ul className='setInput'>
                                 {opt.map((v, i) => {
                                     return (
-                                        <li key={i} id={v.optnum} className='selectOpt active'>
-                                            <input type='hidden' data-optnum={v.optnum}
-                                            data-optname={v.optname}
-                                            data-price={v.prodprice}/>
-                                            <div>
-                                                <p>옵션 : {v.optname}</p>
-                                                <div className='wrapOpt'>
-                                                    <button type='button' className='mBtn' data-set='minus' onClick={onClickQty}>-</button>
-                                                    <input className='quantity' name='qty' value={0} readOnly />
-                                                    <button type='button' className='mBtn' data-set='plus' onClick={onClickQty}>+</button>
+                                        <li key={i} id={v.optnum} className='selectOpt'>
+                                            <div className='qtyBtnWrap'>
+                                                <input type='hidden' 
+                                                id = 'inputOPT'
+                                                data-optnum={v.optnum}
+                                                data-optname={v.optname}
+                                                data-price={data.prodprice}/>
+                                                <div className='qtyBtnWrap2'>
+                                                    <p>옵션 : {v.optname}</p>
+                                                    <div className='wrapOpt'>
+                                                        <button type='button' className='mBtn' data-set='minus' onClick={onClickQty}>-</button>
+                                                        <input className='quantity' name='qty'
+                                                        type='text' value={0} readOnly />
+                                                        <button type='button' className='mBtn' data-set='plus' onClick={onClickQty}>+</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className='btnW'>
-                                                <button type='button' className='X'>X</button>
-                                                <span>{(data.prodprice).toLocaleString()} 원</span>
+                                                <div className='btnW'>
+                                                    <button type='button' className='X' onClick={deleteIndex}>X</button>
+                                                    <p>{(data.prodprice).toLocaleString()} 원</p>
+                                                    <p className='eachPrice'>0원</p>
+                                                </div>
                                             </div>
                                         </li>
                                     )
                                 })}
                             </ul>
                             <div className='total'>총 상품금액 (수량)
-                                <div><span className='totalPrice'>{(data.prodprice*myNum).toLocaleString()}원 </span><span className='totalNum'> ({myNum}개)</span></div>
+                                <div><span className='totalPrice'>0</span><span className='totalNum'>(원)</span></div>
                             </div>
         
                             <div className='btnArea'>

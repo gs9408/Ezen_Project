@@ -3,7 +3,10 @@ import styled from "styled-components";
 const DetailProductContainer = styled.div`
     width: 980px;
     margin: auto;
-
+    /* flex-direction: column; */
+    /* display: flex; */
+    
+    /* border: 1px solid #000; */
     & .productTitle{
         font-size: 28px;
         margin-bottom: 20px;
@@ -13,6 +16,9 @@ const DetailProductContainer = styled.div`
         width: 100%;
         display:flex; 
         flex-direction: row;
+        /* padding: 30px; */
+        /* border: 1px solid #000; */
+        /* background-color: #f00; */
         
         & .sliderImgArea {
             width: 50%;
@@ -26,7 +32,7 @@ const DetailProductContainer = styled.div`
             }
             & .titleArea {
                 float: left;
-
+                /* border: 1px solid #000; */
                 & p {
                     margin-bottom: 15px;
                     margin-right: 30px;
@@ -138,48 +144,57 @@ const DetailProductContainer = styled.div`
             }
             .setInput {
                 .selectOpt {
+                    display:none;
                     border: 1px solid #ccc;
                     margin-bottom: 10px;
                     padding: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-
+                    
                     &:last-child {
                         margin-bottom: 20px;
                     }
 
                     &.active {
-                        display: none;
+                        display: block;
                     }
 
-                    p {
-                        font-size: 13px;
-                        margin-bottom: 10px;
-                    }
-
-                    .btnW {
+                    .qtyBtnWrap {
                         display: flex;
-                        flex-direction: column;
-                        background-color: #eee;
-                    }
+                        justify-content: space-between;
 
-                    .wrapOpt {
-                        border: 1px solid #eee;
-                        width: 71.3px;
-                        input {
-                            width: 30px;
-                            text-align: center;
-                            border: 0;
+                        p {
+                            font-size: 13px;
+                            margin-bottom: 10px;
                         }
 
-                        button {
-                            border: 0;
-                        }
-                    }
+                            .qtyBtnWrap2 {
+                                .wrapOpt {
+                                    input {
+                                        width: 25px;
+                                        text-align: center;
+                                    }
+                                }
+                            }
 
-                    span {
-                        font-size: 15px;
+                        .btnW {
+                            flex-direction: column;
+
+                            button {
+                                margin-left: 40px;
+                                margin-bottom: 10px;
+                                border: 0px;
+                                font-size: 13px;
+                                color: #777;
+                            }
+
+                            p {
+                                text-align: right;
+                                font-size: 17px;
+
+                                &:first-of-type {
+                                    font-size: 13px;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -258,6 +273,7 @@ const DetailProductContainer = styled.div`
 
     & .description {
         max-width: 980px;
+        /* border: 1px solid #000; */
         
         & img {
             width: 980px;

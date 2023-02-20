@@ -102,6 +102,6 @@ dist
 .tern-port
 
 # .env files
-# .env
-# .env.server.development
-# .env.server.production
+.env
+.env.server.development
+.env.server.production
